@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://di1vpgb27vn2i"]
+
+[ext_resource type="Texture2D" uid="uid://ckeixsgqlluit" path="res://assets/world/desert.PNG" id="1_iaf3h"]
+[ext_resource type="PackedScene" uid="uid://bp8rsprtlpq5q" path="res://scenes/player.tscn" id="1_n8vkm"]
+
+[node name="World" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+rotation = 3.14159
+texture = ExtResource("1_iaf3h")
+region_enabled = true
+region_rect = Rect2(0, 0, 4000, 4000)
+
+[node name="Player" parent="." instance=ExtResource("1_n8vkm")]
