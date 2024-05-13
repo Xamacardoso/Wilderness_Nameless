@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://c72s5cmcsynym"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_1jdxh"]
+[ext_resource type="Texture2D" uid="uid://dwsanwoksbmkb" path="res://assets/player/walk/cowboy_walk_right-spritesheet.png" id="1_djpcm"]
+[ext_resource type="PackedScene" uid="uid://jh4w7l3nib8m" path="res://scenes/utils/hurt_box.tscn" id="3_cwj8i"]
+[ext_resource type="PackedScene" uid="uid://dohjg2t57fn8y" path="res://scenes/utils/hit_box.tscn" id="4_l0meq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1pso"]
+atlas = ExtResource("1_djpcm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tu6s"]
+atlas = ExtResource("1_djpcm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmbga"]
+atlas = ExtResource("1_djpcm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eki5w"]
+atlas = ExtResource("1_djpcm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0jp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1pso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tu6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmbga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eki5w")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4kox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyhh8"]
+size = Vector2(19.0572, 26.4977)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdc15"]
+size = Vector2(7.11771, 11.4783)
+
+[node name="Cowboy_Weak" type="CharacterBody2D"]
+script = ExtResource("1_1jdxh")
+movement_speed = 20.0
+
+[node name="Cowboy_Weak_Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_j0jp3")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.179863, 0.225834)
+shape = SubResource("CapsuleShape2D_h4kox")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_cwj8i")]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(1.78814e-07, 2.98023e-07)
+scale = Vector2(0.419788, 0.528348)
+shape = SubResource("RectangleShape2D_wyhh8")
+
+[node name="HitBox" parent="." instance=ExtResource("4_l0meq")]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, 1.12618)
+scale = Vector2(0.842968, 0.893193)
+shape = SubResource("RectangleShape2D_gdc15")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
