@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player_sprite = $Player_Sprite
 
 var SPEED = 40.0
+var hp = 80
 
 func _physics_process(_delta):
 	movement()
@@ -16,8 +17,6 @@ func movement() -> void:
 	velocity = movementvector.normalized()*SPEED
 	play_animation(x_movement, y_movement)
 	move_and_slide()
-	
-	
 	
 	
 ## Handles movement animation
@@ -34,3 +33,12 @@ func play_animation(x_movement,y_movement) -> void:
 					player_sprite.play("walk_up")
 	else:
 		player_sprite.play("idle")
+
+
+
+
+
+
+func _on_hurt_box_hurt(damage):
+	hp -= damage
+	print(hp)

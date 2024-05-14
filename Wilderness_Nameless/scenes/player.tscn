@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://bp8rsprtlpq5q"]
+[gd_scene load_steps=26 format=3 uid="uid://bp8rsprtlpq5q"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mx5pq"]
 [ext_resource type="Texture2D" uid="uid://d0qn3wts8ys1h" path="res://assets/player/idle/cowboy_idle_spritesheet.png" id="2_fkk02"]
 [ext_resource type="Texture2D" uid="uid://bm0ogc334h2ty" path="res://assets/player/walk/cowboy_walk_down_spritesheet.png" id="2_ttm7c"]
 [ext_resource type="Texture2D" uid="uid://dwsanwoksbmkb" path="res://assets/player/walk/cowboy_walk_right-spritesheet.png" id="3_5laxa"]
 [ext_resource type="Texture2D" uid="uid://6sppu4776nwc" path="res://assets/player/walk/cowboy_walk_up_spritesheet.png" id="5_n4vcd"]
+[ext_resource type="PackedScene" uid="uid://jh4w7l3nib8m" path="res://scenes/utils/hurt_box.tscn" id="6_yhlsr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1lsk"]
 atlas = ExtResource("2_fkk02")
@@ -143,6 +144,9 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l66oe"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt8pw"]
+size = Vector2(20, 14.7)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_mx5pq")
@@ -156,3 +160,16 @@ animation = &"walk_up"
 position = Vector2(0, 2)
 scale = Vector2(0.205685, 0.238132)
 shape = SubResource("CapsuleShape2D_l66oe")
+
+[node name="HurtBox" parent="." instance=ExtResource("6_yhlsr")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, 2)
+scale = Vector2(0.363617, 0.638295)
+shape = SubResource("RectangleShape2D_gt8pw")
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]

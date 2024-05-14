@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed := 30.0
 @onready var enemy_sprite = $Cowboy_Weak_Sprite
-@export var hp = 10
+var hp = 10
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -18,4 +18,10 @@ func play_animation(direction) -> void:
 	if direction.x > 0.1:
 		enemy_sprite.flip_h = false
 	elif direction.x < -0.1:
-		enemy_sprite.flip_h =true
+		enemy_sprite.flip_h = true
+
+
+func _on_hurt_box_hurt(damage):
+	hp -= damage
+	if hp <= 0:
+		queue_free()

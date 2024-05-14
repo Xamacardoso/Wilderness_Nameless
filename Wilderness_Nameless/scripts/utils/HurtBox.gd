@@ -11,7 +11,7 @@ signal hurt(damage)
 
 func _on_area_entered(area):
 	if area.is_in_group("attack"):
-		if not area.get("damage") == null :
+		if area.get("damage") != null :
 			match HurtBoxType:
 				0: # Cooldown
 					collision.call_deferred("set","disabled",true)
@@ -24,11 +24,11 @@ func _on_area_entered(area):
 				
 			var damage = area.damage
 			emit_signal("hurt", damage)
+			print('emiti dano')
 			
-
-
-
 
 
 func _on_disable_timer_timeout():
 	collision.call_deferred("set","disabled",false)
+	
+
