@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ckeixsgqlluit" path="res://assets/world/desert.PNG" id="1_iaf3h"]
 [ext_resource type="PackedScene" uid="uid://bp8rsprtlpq5q" path="res://scenes/player.tscn" id="1_n8vkm"]
-[ext_resource type="PackedScene" uid="uid://c72s5cmcsynym" path="res://scenes/enemy.tscn" id="3_ro6qv"]
+[ext_resource type="PackedScene" uid="uid://c3xtld00b07dq" path="res://scenes/utils/enemy_spawner.tscn" id="3_wf66l"]
 
 [node name="World" type="Node2D"]
 
@@ -18,5 +18,4 @@ region_rect = Rect2(0, 0, 4000, 4000)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Cowboy_Weak" parent="." instance=ExtResource("3_ro6qv")]
-position = Vector2(193, -58)
+[node name="Enemy_Spawner" parent="." instance=ExtResource("3_wf66l")]

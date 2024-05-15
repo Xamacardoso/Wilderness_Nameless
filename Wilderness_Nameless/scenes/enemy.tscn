@@ -50,6 +50,7 @@ size = Vector2(19.0572, 26.4977)
 size = Vector2(7.11771, 11.4783)
 
 [node name="Cowboy_Weak" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_1jdxh")
 movement_speed = 20.0
 
